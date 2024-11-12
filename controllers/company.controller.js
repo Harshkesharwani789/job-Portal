@@ -4,16 +4,16 @@ import getDataUri from "../utils/datauri.js";
 
 export const registerCompany = async (req, res) => {
   try {
-    const { companyName } = req.body;
+    const { companyNamee } = req.body;
 
-    if (!companyName) {
+    if (!companyNamee) {
       return res.status(400).json({
         success: false,
         message: "Company name is missing",
       });
     }
 
-    let company = await Company.findOne({ name: companyName });
+    let company = await Company.findOne({ name: companyNamee });
 
     if (company) {
       return res.status(400).json({
@@ -23,7 +23,7 @@ export const registerCompany = async (req, res) => {
     }
 
     company = await Company.create({
-      name: companyName,
+      name: companyNamee,
       userId: req.id,
     });
 
